@@ -65,3 +65,8 @@ echo "vpn_network=\"${vpn_network}\"" >> /etc/wireguard/config
 echo "cust_network=\"${cust_network}\"" >> /etc/wireguard/config
 echo "server_addr=\"${server_addr}\"" >> /etc/wireguard/config
 echo "server_public=\"${public}\"" >> /etc/wireguard/config
+
+cp ${tmpfldr}/wg-add-client /usr/sbin/wg-add-client
+chmod u+x /usr/sbin/wg-add-client
+
+mkdir /etc/wireguard/clients
