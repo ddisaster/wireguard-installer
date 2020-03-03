@@ -55,6 +55,7 @@ echo ${public} > /etc/wireguard/wg-public.key
 cat ${tmpfldr}/wg0-server.example.conf | \
 	sed -e "s/ADDRESS/$(echo ${vpn_network} | cut -d '.' -f -3).2/" | \
 	sed -e "s/PORT/${port}/" | \
+	sed -e "s/IFACE/${iface}/" | \
 	sed -e "s|PRIVKEY|${private}|" \
 	> /etc/wireguard/wg0.conf
 
@@ -65,6 +66,7 @@ echo "vpn_network=\"${vpn_network}\"" >> /etc/wireguard/config
 echo "cust_network=\"${cust_network}\"" >> /etc/wireguard/config
 echo "server_addr=\"${server_addr}\"" >> /etc/wireguard/config
 echo "server_public=\"${public}\"" >> /etc/wireguard/config
+echo "port=\"${port}\"" >> /etc/wireguard/config
 
 cp ${tmpfldr}/wg-add-client /usr/bin/wg-add-client
 chmod u+x /usr/bin/wg-add-client
