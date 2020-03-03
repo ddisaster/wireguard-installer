@@ -53,7 +53,7 @@ echo ${public} > /etc/wireguard/wg-public.key
 cat ${tmpfldr}/wg0-server.example.conf | \
 	sed -e "s/ADDRESS/$(echo ${vpn_network} | cut -d '.' -f -3).2/" | \
 	sed -e "s/PORT/${port}/" | \
-	sed -e "s/PRIVKEY/${private}/" \
+	sed -e "s|PRIVKEY|${private}|" \
 	> /etc/wireguard/wg0.conf
 
 echo "2" > /etc/wireguard/last-ip.txt
