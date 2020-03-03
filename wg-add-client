@@ -13,7 +13,7 @@ else
 	echo "${key}" | wg pubkey > /etc/wireguard/clients/$1/$1.pub
 	this_ip=$(($(cat /etc/wireguard/last-ip.txt)+1))
 	echo "${this_ip}" > /etc/wireguard/last-ip.txt
-	ip="${vpn_network}.${this_ip}"
+	ip="$(echo ${vpn_network} | cut -d '.' -f -3).${this_ip}"
 	cat /etc/wireguard/wg0-client.example.conf | \
 		sed -e "s/VPN_IP/${ip}/" | \
 		sed -e "s|PRIVKEY|${key}|" | \
