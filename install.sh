@@ -66,7 +66,7 @@ echo "cust_network=\"${cust_network}\"" >> /etc/wireguard/config
 echo "server_addr=\"${server_addr}\"" >> /etc/wireguard/config
 echo "server_public=\"${public}\"" >> /etc/wireguard/config
 
-cp ${tmpfldr}/wg-add-client /usr/sbin/wg-add-client
-chmod u+x /usr/sbin/wg-add-client
+cp ${tmpfldr}/wg-add-client /usr/bin/wg-add-client
+chmod u+x /usr/bin/wg-add-client
 
 mkdir /etc/wireguard/clients
