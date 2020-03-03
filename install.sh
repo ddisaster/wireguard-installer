@@ -43,7 +43,7 @@ printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/pref
 apt update || error
 apt install -y wireguard git vim iptables || error
 
-git clone TODO ${tmpfldr}
+git clone https://github.com/ddisaster/wireguard-installer.git ${tmpfldr}
 
 private="$(wg genkey)"
 echo ${private} > /etc/wireguard/wg-private.key
