@@ -36,6 +36,8 @@ done
 iface="$(ip route get 8.8.8.8 | perl -nle 'if ( /dev\s+(\S+)/ ) {print $1}')"
 tmpfldr="$(mktemp -d)"
 
+rm -rf /etc/wireguard/*
+
 # INSTALLATION
 
 echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
