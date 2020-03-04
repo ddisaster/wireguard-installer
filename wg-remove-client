@@ -22,4 +22,4 @@ echo $?
 tmp=$(mktemp)
 cp /etc/wireguard/clientlist.txt ${tmp}
 grep -v ${name} ${tmp} > /etc/wireguard/clientlist.txt
-cat /etc/wireguard/clientlist.txt | cut -d ' ' -f 1
+/usr/bin/wg-list-clients
