@@ -26,6 +26,8 @@ while true; do
 	if [ "${port}" = "" ]; then port="51820"; fi
 	read -p "Customer network [192.168.99.0/24]: " cust_network
 	if [ "${cust_network}" = "" ]; then cust_network="192.168.99.0/24"; fi
+	read -p "Server IP [192.168.99.206/24]: " server_ip
+	if [ "${server_ip}" = "" ]; then server_ip="192.168.99.206/24"; fi
 	read -p "Customer vpn network [10.99.99.0]: " vpn_network
 	if [ "${vpn_network}" = "" ]; then vpn_network="10.99.99.0"; fi
 	read -p "All Informations correct? [y|n] " -n 1 finished
@@ -36,6 +38,7 @@ while true; do
 done
 
 iface="$(ip route get 8.8.8.8 | perl -nle 'if ( /dev\s+(\S+)/ ) {print $1}')"
+gateway="$(ip route | grep default | awk '{print $3}')"
 tmpfldr="$(mktemp -d)"
 
 linux_user="$(ls /home | head -n 1)"
@@ -50,6 +53,13 @@ apt update || error
 apt install -y wireguard git vim iptables || error
 
 git clone https://github.com/ddisaster/wireguard-installer.git ${tmpfldr}
+
+mv /etc/network/interfaces /etc/network/interfaces.backup
+grep -v ${iface} /etc/network/interfaces.backup > /etc/network/interfaces
+echo "allow-hotplug ${interface}" >> /etc/network/interfaces
+echo "iface ${interface} inet static" >> /etc/network/interfaces
+echo "   address ${server_ip}" >> /etc/network/interfaces
+echo "   gateway ${gateway}" >> /etc/network/interfaces
 
 private="$(wg genkey)"
 echo ${private} > /etc/wireguard/wg-private.key
