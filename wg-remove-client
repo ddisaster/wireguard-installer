@@ -4,7 +4,7 @@ if [ $# -eq 0 ]; then
   clear
   cat /etc/wireguard/clientlist.txt | cut -d " " -f 1
   read -p "Enter Name (Enter empty name to abort): " name
-  if [ "${cust_name}" = "" ]; then exit 0; fi
+  if [ "${name}" = "" ]; then echo "abort" && exit 0; fi
 else
   name=${1}
 fi
