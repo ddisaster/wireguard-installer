@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+  clear
+  cat /etc/wireguard/clientlist.txt | cut -d " " -f 1
+  read -p "Enter Name (Enter empty name to abort): " name
+  if [ "${cust_name}" = "" ]; then exit 0; fi
+else
+  name=${1}
+fi
+
+if [ "$(cat /etc/wireguard/clientlist.txt | grep ${name} | wc -l)" != 1 ]; then
+  echo "Name not found or name not unique"
+  exit 1
+fi
+
+peer="$"(cat /etc/wireguard/clientlist.txt | grep stoffi | cut -d " " -f 2)"
+
+sudo wg set wg0 peer ${peer} remove
