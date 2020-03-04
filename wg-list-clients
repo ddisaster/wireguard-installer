@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for l in $(cat /etc/wireguard/clientlist.txt | sed 's/ /#/g'); do
+  name="$(echo ${l} | cut -d '#' -f 1)"
+  peer="$(echo ${l} | cut -d '#' -f 2)"
+  echo "${name}"
+  echo "peer: ${peer}"
+  wg show | grep -A 100 ${peer} | tail -n +2 | sed '/peer/q'
+  echo ""
+done
