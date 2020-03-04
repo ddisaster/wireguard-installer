@@ -56,8 +56,8 @@ git clone https://github.com/ddisaster/wireguard-installer.git ${tmpfldr}
 
 mv /etc/network/interfaces /etc/network/interfaces.backup
 grep -v ${iface} /etc/network/interfaces.backup > /etc/network/interfaces
-echo "allow-hotplug ${interface}" >> /etc/network/interfaces
-echo "iface ${interface} inet static" >> /etc/network/interfaces
+echo "allow-hotplug ${iface}" >> /etc/network/interfaces
+echo "iface ${iface} inet static" >> /etc/network/interfaces
 echo "   address ${server_ip}" >> /etc/network/interfaces
 echo "   gateway ${gateway}" >> /etc/network/interfaces
 
