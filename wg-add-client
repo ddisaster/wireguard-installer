@@ -35,3 +35,5 @@ echo "Copy config to /home/${linux_user}/${cust_name}-${1}.conf"
 cp /etc/wireguard/clients/$1/wg0.conf /home/${linux_user}/${cust_name}-${1}.conf
 chown ${linux_user}:${linux_user} /home/${linux_user}/${cust_name}-${1}.conf
 echo "Get the config via WinSCP"
+echo "Clients:"
+/usr/bin/wg-list-clients
