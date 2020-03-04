@@ -72,7 +72,7 @@ echo "server_addr=\"${server_addr}\"" >> /etc/wireguard/config
 echo "server_public=\"${public}\"" >> /etc/wireguard/config
 echo "port=\"${port}\"" >> /etc/wireguard/config
 echo "linux_user=\"${linux_user}\"" >> /etc/wireguard/config
-echo "cust_name\"${cust_name}\"" >> /etc/wireguard/config
+echo "cust_name=\"${cust_name}\"" >> /etc/wireguard/config
 
 cp ${tmpfldr}/wg-add-client /usr/bin/wg-add-client
 chmod u+x /usr/bin/wg-add-client
