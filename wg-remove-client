@@ -17,7 +17,6 @@ fi
 peer="$(cat /etc/wireguard/clientlist.txt | grep stoffi | cut -d ' ' -f 2)"
 
 wg set wg0 peer ${peer} remove
-echo $?
 
 tmp=$(mktemp)
 cp /etc/wireguard/clientlist.txt ${tmp}
