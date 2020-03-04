@@ -93,4 +93,5 @@ chmod u+x /usr/bin/wg-list-clients
 
 mkdir /etc/wireguard/clients
 cp ${tmpfldr}/wg0-client.example.conf /etc/wireguard/wg0-client.example.conf
-systemctl enable wg-quick@wg0.service --now
+systemctl enable wg-quick@wg0.service
+reboot
