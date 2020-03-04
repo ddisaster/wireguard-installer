@@ -11,10 +11,14 @@ source /etc/wireguard/config
 mkdir -p /etc/wireguard/clients/$1
 key="$(wg genkey)"
 echo "${key}" > /etc/wireguard/clients/$1/$1.priv
-echo "${key}" | wg pubkey > /etc/wireguard/clients/$1/$1.pub
+peer="$(echo ${key} | wg pubkey)"
+echo ${peer} > /etc/wireguard/clients/$1/$1.pub
 this_ip=$(($(cat /etc/wireguard/last-ip.txt)+1))
 echo "${this_ip}" > /etc/wireguard/last-ip.txt
 ip="$(echo ${vpn_network} | cut -d '.' -f -3).${this_ip}"
+
+echo "${1} ${peer}" >> /etc/wireguard/clientlist.txt
+
 cat /etc/wireguard/wg0-client.example.conf | \
 	sed -e "s/VPN_IP/${ip}/" | \
 	sed -e "s|PRIVKEY|${key}|" | \
