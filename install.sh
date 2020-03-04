@@ -18,7 +18,9 @@ function error {
 
 while true; do
 	clear
-	read -p "Server addresse [comse.dyndns.org]: " server_addr
+	read -p "Customer Name [comse]: " cust_name
+	if [ "${cust_name}" = "" ]; then cust_name="comse"; fi
+	read -p "Server address [comse.dyndns.org]: " server_addr
 	if [ "${server_addr}" = "" ]; then server_addr="comse.dyndns.org"; fi
 	read -p "Port [51820]: " port
 	if [ "${port}" = "" ]; then port="51820"; fi
@@ -35,6 +37,8 @@ done
 
 iface="$(ip route get 8.8.8.8 | perl -nle 'if ( /dev\s+(\S+)/ ) {print $1}')"
 tmpfldr="$(mktemp -d)"
+
+linux_user="$(ls /home | head -n 1)"
 
 rm -rf /etc/wireguard/*
 
@@ -67,14 +71,13 @@ echo "cust_network=\"${cust_network}\"" >> /etc/wireguard/config
 echo "server_addr=\"${server_addr}\"" >> /etc/wireguard/config
 echo "server_public=\"${public}\"" >> /etc/wireguard/config
 echo "port=\"${port}\"" >> /etc/wireguard/config
+echo "linux_user=\"${linux_user}\"" >> /etc/wireguard/config
+echo "cust_name\"${cust_name}\"" >> /etc/wireguard/config
 
 cp ${tmpfldr}/wg-add-client /usr/bin/wg-add-client
 chmod u+x /usr/bin/wg-add-client
-
 mkdir /etc/wireguard/clients
-
 cp ${tmpfldr}/wg0-client.example.conf /etc/wireguard/wg0-client.example.conf
-
 systemctl enable wg-quick@wg0.service
 
 # need? systemctl reboot
