@@ -29,5 +29,5 @@ wg set wg0 peer $(cat /etc/wireguard/clients/$1/$1.pub) allowed-ips $ip/32
 	
 echo "Copy config to /home/${linux_user}/${cust_name}-${1}.conf"
 cp /etc/wireguard/clients/$1/wg0.conf /home/${linux_user}/${cust_name}-${1}.conf
-chown ${1}:${1} /home/${linux_user}/${cust_name}-${1}.conf
+chown ${linux_user}:${linux_user} /home/${linux_user}/${cust_name}-${1}.conf
 echo "Get the config via WinSCP"
