@@ -76,6 +76,9 @@ echo "cust_name=\"${cust_name}\"" >> /etc/wireguard/config
 
 cp ${tmpfldr}/wg-add-client /usr/bin/wg-add-client
 chmod u+x /usr/bin/wg-add-client
+cp ${tmpfldr}/wg-remove-client /usr/bin/wg-remove-client
+chmod u+x /usr/bin/wg-remove-client
+
 mkdir /etc/wireguard/clients
 cp ${tmpfldr}/wg0-client.example.conf /etc/wireguard/wg0-client.example.conf
 systemctl enable wg-quick@wg0.service --now
