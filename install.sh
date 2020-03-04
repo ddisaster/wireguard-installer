@@ -78,6 +78,8 @@ cp ${tmpfldr}/wg-add-client /usr/bin/wg-add-client
 chmod u+x /usr/bin/wg-add-client
 cp ${tmpfldr}/wg-remove-client /usr/bin/wg-remove-client
 chmod u+x /usr/bin/wg-remove-client
+cp ${tmpfldr}/wg-list-clients /usr/bin/wg-list-clients
+chmod u+x /usr/bin/wg-list-clients
 
 mkdir /etc/wireguard/clients
 cp ${tmpfldr}/wg0-client.example.conf /etc/wireguard/wg0-client.example.conf
