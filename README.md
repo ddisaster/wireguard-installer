@@ -20,7 +20,7 @@
 - Installationsscript herungerladen: 
 	wget wireguard.comse.eu
 - starten:
-	bash installer.sh
+	bash installer.sh (bzw. bash index.html)
 - Userfile downloaden:
 	- Mit WinSCP Typ ssh auf den Server verbinden (den vergebenen usernamen verwenden)
 	- Das Config File sollte sich im Homeverzeichnis des Users befinden
