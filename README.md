@@ -50,4 +50,5 @@ Dieser Befehl zeigt die vorhandenen Benutzerprofile an
 ## Entfernen eines Benutzers
 	wg-remove-client
 Dieser Befehl zeigt die installierten Profile an. Danach kann der Name eines Profils angegeben werden, das gelöscht werden soll. Dabei wird der Benutzer ausgewählt, der dem eingegebenen Namen am ehesten entspricht. Ist der Name bereits bekannt, kann dieser auch direkt beim Aufrufen des Scripts mit angegeben werden:
+
 	wg-remove-client username
