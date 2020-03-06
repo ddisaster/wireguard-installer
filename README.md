@@ -30,10 +30,12 @@ Im folgenden eine kurze Anleitung, wie die Benutzer angelegt, angezeigt und entf
 
 ## Verbindung zum Server aufbauen
 Mit Putty kann eine Verbindung von Windows aus auf den Debian-Server hergestellt werden:
+
 	Hostname: user@192.168.0.205
 Dabei muss der zusätzliche Nutzer angegeben werden, der während der Installation von Debian angegeben wurde. Aus Sicherheitsgründen ist die direkte Anmeldung des Benutzers root über SSH bei Debian deaktiviert. Die Anmeldung kann in Putty unter Saved Sessions mit der Angabe eines Names für die Session gespeichert werden.
 
 Nach der Anmeldung über SSH muss zum benutzer root gewechselt werden. Dies erfolgt mit dem Befehl
+
 	su -
 und der eingabe des root Passworts, das während der installation angegeben wurde. das "-" nach dem Befehl "su" muss mit angegeben werden!
 
