@@ -45,7 +45,7 @@ Es wurden scripte erstellt, die die Verwaltung der Benutzerprofile erleichtert
 	wg-add-client username
 Dieser Befehl legt einen neuen Benutzer in wireguard an und kopiert die erstellte Konfigurationsdatei im Home-Verzeichnes des Standardbenutzers an. Diese Datei kann z.B. mit WinSCP vom Debian-Server kopiert werden und muss beim Client in Wireguard importiert werden. Nach dem Ausführen des Befehls werden die im System installierten Profile ausgegeben
 
-## Anzeigen der isntallierten Benutzerprofile
+## Anzeigen der installierten Benutzerprofile
 	wg-list-clients
 Dieser Befehl zeigt die vorhandenen Benutzerprofile an
 
