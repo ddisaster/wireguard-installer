@@ -24,6 +24,7 @@
 - Userfile downloaden:
 	- Mit WinSCP Typ ssh auf den Server verbinden (den vergebenen usernamen verwenden)
 	- Das Config File sollte sich im Homeverzeichnis des Users befinden
+- Portfreigabe auf den Server einrichten: UDP 51820
 
 # Benutzerprofile verwalten
 Im folgenden eine kurze Anleitung, wie die Benutzer angelegt, angezeigt und entfernt werden können.
