@@ -37,3 +37,5 @@ chown ${linux_user}:${linux_user} /home/${linux_user}/${cust_name}-${1}.conf
 echo "Get the config via WinSCP"
 echo "Clients:"
 /usr/bin/wg-list-clients
+wg-quick down wg0 || echo "Stop service failed"
+wg-quick up wg0 || echo "Start service failed"
