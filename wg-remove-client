@@ -22,3 +22,8 @@ tmp=$(mktemp)
 cp /etc/wireguard/clientlist.txt ${tmp}
 grep -v ${name} ${tmp} > /etc/wireguard/clientlist.txt
 /usr/bin/wg-list-clients
+
+echo "Restart wireguard:"
+systemctl restart qg-quick@wg0 && echo "restart completed" && exit 0
+echo "restart FAILED"
+exit 1
