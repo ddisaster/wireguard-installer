@@ -14,7 +14,7 @@ if [ "$(cat /etc/wireguard/clientlist.txt | grep ${name} | wc -l)" != 1 ]; then
   exit 1
 fi
 
-peer="$(cat /etc/wireguard/clientlist.txt | grep stoffi | cut -d ' ' -f 2)"
+peer="$(cat /etc/wireguard/clientlist.txt | grep ${name} | cut -d ' ' -f 2)"
 
 wg set wg0 peer ${peer} remove
 
