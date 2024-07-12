@@ -42,13 +42,13 @@ if [ "${update}" != "y" ]; then
 			break
 		fi
 	done
-^$
+
 	iface="$(ip route get 8.8.8.8 | perl -nle 'if ( /dev\s+(\S+)/ ) {print $1}')"
 	gateway="$(ip route | grep default | awk '{print $3}')"
 	tmpfldr="$(mktemp -d)"
-^$
+
 	linux_user="$(ls /home | head -n 1)"
-^$
+
 	rm -rf /etc/wireguard/*
 
 	echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
@@ -66,22 +66,22 @@ apt update || error
 apt upgrade -y || error
 apt install -y wireguard git vim iptables || error
 git clone https://github.com/ddisaster/wireguard-installer.git ${tmpfldr}
-^$
+
 if [ "${update}" != "y" ]; then
 	private="$(wg genkey)"
 	echo ${private} > /etc/wireguard/wg-private.key
 	public="$(echo ${private} | wg pubkey)"
 	echo ${public} > /etc/wireguard/wg-public.key
-^$
+
 	cat ${tmpfldr}/wg0-server.example.conf | \
 		sed -e "s/ADDRESS/$(echo ${vpn_network} | cut -d '.' -f -3).2/" | \
 		sed -e "s/PORT/${port}/" | \
 		sed -e "s/IFACE/${iface}/" | \
 		sed -e "s|PRIVKEY|${private}|" \
 		> /etc/wireguard/wg0.conf
-^$
+
 	echo "2" > /etc/wireguard/last-ip.txt
-^$
+
 	echo "#!/bin/bash" > /etc/wireguard/config
 	echo "vpn_network=\"${vpn_network}\"" >> /etc/wireguard/config
 	echo "cust_network=\"${cust_network}\"" >> /etc/wireguard/config
