@@ -94,12 +94,15 @@ if [ "${update}" != "y" ]; then
 	cp ${tmpfldr}/wg0-client.example.conf /etc/wireguard/wg0-client.example.conf
 fi
 
-cp ${tmpfldr}/wg-add-client /usr/bin/wg-add-client
-chmod u+x /usr/bin/wg-add-client
-cp ${tmpfldr}/wg-remove-client /usr/bin/wg-remove-client
-chmod u+x /usr/bin/wg-remove-client
-cp ${tmpfldr}/wg-list-clients /usr/bin/wg-list-clients
-chmod u+x /usr/bin/wg-list-clients
+function copy_script () {
+    cp ${tmpfldr}/${1} /usr/bin/${1}
+    chmod u+x /usr/bin/${1}
+}
+
+copy_script wg-add-client
+copy_scrypt wg-remove-client
+copy_scrypt wg-list-clients
+copy_scrypt wg-fix-removed_users
 
 systemctl enable wg-quick@wg0.service
 reboot
