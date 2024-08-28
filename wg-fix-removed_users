@@ -1,15 +1,21 @@
 #!/bin/bash
 
 function check_user() {
-    if [ "$(grep ${1} /etc/wireguard/clientlist.txt}" == "" ]; then
-        echo "remove user ${1}"
-        peer="$(cat /etc/wireguard/client/${1}/${1}.pub)"
-        wg set wg0 peer ${peer} remove
+	user="${1}"
+	if [ "$(grep "${user} " /etc/wireguard/clientlist.txt)" == "" ]; then
+        	echo "remove user ${user}"
+        	peer="$(cat /etc/wireguard/clients/${user}/${user}.pub)"
+        	wg set wg0 peer ${peer} remove
+	fi
 }
 
-find /etc/wireguard/clients/ -t d -max-depth 1 -exec check_user {} \;
+pushd /etc/wireguard/clients/ 
+for c in $(ls -1); do
+	check_user ${c}
+done
+popd
 
 echo "Restart wireguard:"
-systemctl restart qg-quick@wg0 && echo "restart completed" && exit 0
+systemctl restart wg-quick@wg0 && echo "restart completed" && exit 0
 echo "restart FAILED"
 exit 1

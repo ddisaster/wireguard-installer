@@ -45,7 +45,6 @@ if [ "${update}" != "y" ]; then
 
 	iface="$(ip route get 8.8.8.8 | perl -nle 'if ( /dev\s+(\S+)/ ) {print $1}')"
 	gateway="$(ip route | grep default | awk '{print $3}')"
-	tmpfldr="$(mktemp -d)"
 
 	linux_user="$(ls /home | head -n 1)"
 
@@ -65,6 +64,7 @@ fi
 apt update || error
 apt upgrade -y || error
 apt install -y wireguard git vim iptables || error
+tmpfldr="$(mktemp -d)"
 git clone https://github.com/ddisaster/wireguard-installer.git ${tmpfldr}
 
 if [ "${update}" != "y" ]; then
@@ -100,9 +100,9 @@ function copy_script () {
 }
 
 copy_script wg-add-client
-copy_scrypt wg-remove-client
-copy_scrypt wg-list-clients
-copy_scrypt wg-fix-removed_users
+copy_script wg-remove-client
+copy_script wg-list-clients
+copy_script wg-fix-removed_users
 
 systemctl enable wg-quick@wg0.service
-reboot
+systemctl reboot
